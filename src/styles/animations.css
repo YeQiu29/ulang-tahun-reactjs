@@ -1,0 +1,250 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* Custom font classes */
+.font-dancing {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Floating animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes floatHeart {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(5deg); }
+  66% { transform: translateY(-5px) rotate(-5deg); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.floating-particle {
+  animation: float 3s ease-in-out infinite;
+}
+
+.floating-heart {
+  animation: floatHeart 4s ease-in-out infinite;
+}
+
+/* Confetti animation */
+@keyframes confetti {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(100vw * (random() - 0.5)), 
+      calc(100vh * random())
+    ) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  width: 8px;
+  height: 8px;
+  animation: confetti 3s ease-out forwards;
+}
+
+/* Custom confetti animation for different directions */
+.animate-confetti {
+  animation: confetti-explosion 3s ease-out forwards;
+}
+
+@keyframes confetti-explosion {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: 
+      translate(
+        calc((random() - 0.5) * 800px), 
+        calc((random() - 0.5) * 600px)
+      ) 
+      rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Flame animation */
+@keyframes flicker {
+  0%, 100% { transform: scale(1) rotate(-1deg); }
+  25% { transform: scale(1.1) rotate(1deg); }
+  50% { transform: scale(0.95) rotate(-0.5deg); }
+  75% { transform: scale(1.05) rotate(0.5deg); }
+}
+
+.animate-flicker {
+  animation: flicker 0.5s ease-in-out infinite;
+}
+
+/* Glow effect */
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.6),
+              0 0 40px rgba(255, 165, 0, 0.4),
+              0 0 60px rgba(255, 165, 0, 0.2);
+}
+
+/* Sparkle animation */
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Slow spin */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Gradient animation */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Custom color classes */
+.text-peach-400 { color: #FFDAB9; }
+.text-peach-500 { color: #FFB07A; }
+.text-peach-600 { color: #FF8C69; }
+.bg-peach-50 { background-color: #FFF5EE; }
+.bg-peach-100 { background-color: #FFEEE6; }
+.from-peach-50 { --tw-gradient-from: #FFF5EE; }
+.to-peach-600 { --tw-gradient-to: #FF8C69; }
+.from-peach-600 { --tw-gradient-from: #FF8C69; }
+
+.text-gold-400 { color: #FFD700; }
+.text-gold-500 { color: #DAA520; }
+
+/* Smooth transitions */
+.transition-2000 {
+  transition-duration: 2000ms;
+}
+
+/* Cake specific styles */
+.cake-container {
+  perspective: 1000px;
+}
+
+.cake-base {
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.cake-base::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 16px;
+  background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cake-base::after {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 12px;
+  background: linear-gradient(135deg, #FFFFFF, #FFE4E1);
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cake-base {
+    width: 280px;
+    height: 120px;
+  }
+  
+  .confetti-piece {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Scroll reveal animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+/* Heart button special effects */
+@keyframes heartBeat {
+  0%, 14%, 28%, 42% {
+    transform: scale(1);
+  }
+  7%, 21%, 35% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-heartBeat {
+  animation: heartBeat 2s ease-in-out infinite;
+}
+
+/* Loading dots animation */
+@keyframes loading {
+  0%, 20% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate-loading {
+  animation: loading 1.4s ease-in-out infinite;
+}
+
+.animate-loading:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animate-loading:nth-child(3) {
+  animation-delay: 0.4s;
+}
