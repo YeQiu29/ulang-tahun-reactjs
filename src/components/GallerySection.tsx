@@ -1,15 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 
+// --- PETUNJUK PENTING UNTUK MENGGUNAKAN FOTO LOKAL ---
+//
+// 1. BUAT FOLDER BARU: Di dalam folder `src` proyek Anda, buatlah folder baru
+//    bernama `assets` atau `images`. Contoh: `project/src/assets/`
+//
+// 2. SALIN FOTO ANDA: Salin semua file foto Anda (suzan1.jpg, suzan2.jpg, dll.)
+//    ke dalam folder `src/assets/` yang baru Anda buat.
+//
+// 3. IMPORT FOTO: Di bawah ini, hapus komentar (`//`) pada baris-baris `import`
+//    dan pastikan path-nya benar sesuai lokasi file Anda. Tambahkan `import`
+//    untuk setiap foto yang ingin Anda tampilkan.
+//
+import suzanImage1 from '../assets/suzan1.jpg';
+import suzanImage2 from '../assets/suzan2.jpg';
+// import suzanImage3 from './assets/suzan3.jpg'; // Contoh jika ada foto lain
+// import suzanImage4 from './assets/suzan4.jpg'; // Contoh jika ada foto lain
+// import suzanImage5 from './assets/suzan5.jpg'; // Contoh jika ada foto lain
+
+
 const GallerySection: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
+  // 4. GUNAKAN FOTO YANG DI-IMPORT: Ganti string placeholder di bawah ini
+  //    dengan nama variabel yang sudah Anda import di atas.
   const images = [
-    'https://images.pexels.com/photos/1146603/pexels-photo-1146603.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=800'
+    // Menggunakan variabel yang sudah di-import, bukan string URL
+    suzanImage1,
+    suzanImage2,
+    // Hapus string di bawah dan ganti dengan `suzanImage3`
+    'https://placehold.co/800x450/c2f8a5/ffffff?text=Foto+Anda+3',
+    // Hapus string di bawah dan ganti dengan `suzanImage4`
+    'https://placehold.co/800x450/f8e4a5/ffffff?text=Foto+Anda+4',
   ];
 
   useEffect(() => {
@@ -73,7 +97,7 @@ const GallerySection: React.FC = () => {
           </div>
 
           {/* Thumbnail navigation */}
-          <div className="flex justify-center mt-8 space-x-4">
+          <div className="flex justify-center mt-8 space-x-4 overflow-x-auto pb-4">
             {images.map((image, index) => (
               <button
                 key={index}
@@ -81,7 +105,7 @@ const GallerySection: React.FC = () => {
                   setCurrentImage(index);
                   setIsAutoPlay(false);
                 }}
-                className={`relative overflow-hidden rounded-xl transition-all duration-300 ${
+                className={`relative flex-shrink-0 overflow-hidden rounded-xl transition-all duration-300 ${
                   currentImage === index
                     ? 'ring-4 ring-pink-400 scale-110'
                     : 'hover:scale-105 opacity-70 hover:opacity-100'

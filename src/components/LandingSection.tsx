@@ -4,7 +4,7 @@ import { Heart } from 'lucide-react';
 const LandingSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [typingText, setTypingText] = useState('');
-  const fullText = 'Happy Birthday Sayang ❤️';
+  const fullText = 'Happy Birthday Suzan Mega Virginia Tjahjono❤️';
 
   useEffect(() => {
     setIsVisible(true);
