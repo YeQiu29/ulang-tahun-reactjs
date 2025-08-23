@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Heart, Sparkles } from 'lucide-react';
+import { Heart, Sparkles, PlayCircle } from 'lucide-react';
+import { useName } from '../contexts/NameContext';
 
 interface EndingSectionProps {
   onConfettiTrigger: () => void;
+  onShowVideo: () => void;
 }
 
-const EndingSection: React.FC<EndingSectionProps> = ({ onConfettiTrigger }) => {
+const EndingSection: React.FC<EndingSectionProps> = ({ onConfettiTrigger, onShowVideo }) => {
+  const { name } = useName();
   const [isExploded, setIsExploded] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -102,9 +105,22 @@ const EndingSection: React.FC<EndingSectionProps> = ({ onConfettiTrigger }) => {
                 kesuksesan, dan cinta yang tak terbatas. 
                 <br/><br/>
                 <span className="font-dancing text-2xl text-pink-600">
-                  Happy Birthday, Sayang! 🎂✨
+                  {`Happy Birthday, ${name}! 🎂✨`}
                 </span>
               </p>
+            </div>
+
+            <div className="mt-12 animate-fadeInUp delay-500">
+              <p className="text-xl font-semibold text-gray-800 mb-4">
+                Ada Ucapan Ulang Tahun buat Kamu dari Pak Prabowo, Nih...!
+              </p>
+              <button
+                onClick={onShowVideo}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform flex items-center justify-center mx-auto"
+              >
+                <PlayCircle className="mr-2" />
+                Lihat video
+              </button>
             </div>
           </div>
         )}

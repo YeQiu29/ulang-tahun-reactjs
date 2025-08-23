@@ -1,15 +1,18 @@
+
 import React, { useEffect, useState } from 'react';
 import { Heart } from 'lucide-react';
+import { useName } from '../contexts/NameContext';
 
 const LandingSection: React.FC = () => {
+  const { name } = useName();
+  const fullText = `Happy Birthday ${name}❤️`;
+
   const [isVisible, setIsVisible] = useState(false);
   const [typingText, setTypingText] = useState('');
-  const fullText = 'Happy Birthday Suzan Mega Virginia Tjahjono❤️';
 
   useEffect(() => {
     setIsVisible(true);
-    
-    // Typing animation
+
     let i = 0;
     const typeInterval = setInterval(() => {
       if (i < fullText.length) {
@@ -21,7 +24,7 @@ const LandingSection: React.FC = () => {
     }, 100);
 
     return () => clearInterval(typeInterval);
-  }, []);
+  }, [fullText]);
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 flex items-center justify-center">

@@ -1,14 +1,33 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 
-const AudioPlayer: React.FC = () => {
+// --- PETUNJUK MENGGUNAKAN FILE AUDIO LOKAL ---
+//
+// 1. BUAT FOLDER BARU: Di dalam folder `src` proyek Anda, buat folder
+//    bernama `music` atau `assets`. Contoh: `src/music/`
+//
+// 2. SALIN FILE AUDIO: Salin file MP3 Anda ke dalam folder `src/music/`.
+//
+// 3. IMPORT FILE AUDIO: Di bawah ini, hapus komentar (`//`) pada baris `import`
+//    dan pastikan path-nya benar.
+//
+import mySong from '../music/trisuaka.mp3'; // Ganti nama file-nya
+
+export interface AudioPlayerControls {
+  play: () => void;
+  pause: () => void;
+}
+
+const AudioPlayer: React.ForwardRefRenderFunction<AudioPlayerControls> = (_, ref) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  // Mulai dengan audio tidak dibisukan agar bisa langsung play
+  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // For demo purposes, using a placeholder for audio URL
-  // In real implementation, you would use an actual audio file
-  const audioUrl = ""; // Add your audio file here
+  // 4. GUNAKAN FILE AUDIO: Ganti string kosong di bawah dengan variabel
+  //    yang sudah Anda import. Contoh: const audioUrl = mySong;
+  // const audioUrl = ""; // Ganti dengan `mySong` setelah di-import
+  const audioUrl = mySong; // Ganti dengan nama file yang sesuai
 
   useEffect(() => {
     if (audioRef.current) {
@@ -17,62 +36,64 @@ const AudioPlayer: React.FC = () => {
     }
   }, []);
 
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play().catch(console.error);
-      }
-      setIsPlaying(!isPlaying);
-      setIsMuted(false);
+  // Fungsi untuk mencoba auto-play saat komponen dimuat
+  useEffect(() => {
+    const playPromise = audioRef.current?.play();
+    if (playPromise !== undefined) {
+      playPromise.then(_ => {
+        // Autoplay berhasil
+        setIsPlaying(true);
+        setIsMuted(false);
+      }).catch(error => {
+        // Autoplay diblokir oleh browser, biarkan user menekan tombol play
+        console.log("Autoplay was prevented:", error);
+        setIsPlaying(false);
+        setIsMuted(true); // Mulai dalam keadaan mute jika autoplay gagal
+        if (audioRef.current) audioRef.current.muted = true;
+      });
     }
-  };
+  }, [audioUrl]);
+
+
+  useImperativeHandle(ref, () => ({
+    play() {
+      if (audioRef.current) {
+        audioRef.current.play().catch(console.error);
+        setIsPlaying(true);
+      }
+    },
+    pause() {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    },
+  }));
 
   const toggleMute = () => {
     if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const newMutedState = !audioRef.current.muted;
+      audioRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
+      // Jika menyalakan suara dan musik sedang tidak berjalan, putar musiknya
+      if (!newMutedState && audioRef.current.paused) {
+          audioRef.current.play().catch(console.error);
+          setIsPlaying(true);
+      }
     }
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg border border-pink-200">
-        <div className="flex items-center space-x-3">
-          <button
-            onClick={togglePlay}
-            className="p-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors duration-200"
-          >
-            {isPlaying ? (
-              <div className="w-4 h-4 flex space-x-1">
-                <div className="w-1 h-4 bg-white"></div>
-                <div className="w-1 h-4 bg-white"></div>
-              </div>
-            ) : (
-              <div className="w-0 h-0 border-l-4 border-l-white border-t-2 border-t-transparent border-b-2 border-b-transparent ml-0.5"></div>
-            )}
-          </button>
-          
-          <button
-            onClick={toggleMute}
-            className="p-2 text-gray-600 hover:text-gray-800 transition-colors duration-200"
-          >
-            {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-          </button>
-        </div>
-      </div>
-      
-      {/* Placeholder for audio element */}
-      {audioUrl && (
-        <audio
-          ref={audioRef}
-          src={audioUrl}
-          onEnded={() => setIsPlaying(false)}
-        />
-      )}
+      <audio ref={audioRef} src={audioUrl} />
+      <button
+        onClick={toggleMute}
+        className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-pink-200 text-gray-700 hover:text-pink-600 transition-all duration-300 hover:scale-110"
+      >
+        {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+      </button>
     </div>
   );
 };
 
-export default AudioPlayer;
+export default forwardRef(AudioPlayer);

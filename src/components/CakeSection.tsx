@@ -36,7 +36,7 @@ const CakeSection: React.FC = () => {
         </p>
 
         {/* Cake illustration */}
-        <div className="relative mb-12">
+        <div className="relative mb-12 mt-24">
           <div className="cake-container mx-auto relative">
             {/* Cake base */}
             <div className="cake-base bg-gradient-to-b from-pink-300 to-pink-400 w-80 h-32 rounded-t-full mx-auto relative shadow-2xl">
