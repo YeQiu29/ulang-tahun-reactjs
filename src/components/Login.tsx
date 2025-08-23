@@ -27,7 +27,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     }
 
     try {
-      fetch('http://localhost:3001/api/visitors', {
+      fetch('/api/visitors', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

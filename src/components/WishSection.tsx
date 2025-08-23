@@ -14,7 +14,7 @@ const WishSection: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post('http://localhost:3001/api/wishes', { message });
+      await axios.post('/api/wishes', { message });
       setMessage('');
       Swal.fire({
         title: 'Terkirim!',
