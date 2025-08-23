@@ -1,8 +1,8 @@
-
 require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const port = 3001;
@@ -10,6 +10,11 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
+// Sajikan file statis dari direktori build React
+// Request ke root (/) atau file di /assets akan dilayani dari sini
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Buat koneksi database
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -17,6 +22,7 @@ const db = mysql.createConnection({
   database: process.env.DB_NAME
 });
 
+// Hubungkan ke database
 db.connect(err => {
   if (err) {
     console.error('Error connecting to database:', err);
@@ -25,6 +31,7 @@ db.connect(err => {
   console.log('Connected to MySQL database.');
 });
 
+// Rute API untuk menyimpan ucapan
 app.post('/api/wishes', (req, res) => {
   const { message } = req.body;
 
@@ -42,6 +49,7 @@ app.post('/api/wishes', (req, res) => {
   });
 });
 
+// Rute API untuk menyimpan nama pengunjung
 app.post('/api/visitors', (req, res) => {
   const { name } = req.body;
 
@@ -57,6 +65,12 @@ app.post('/api/visitors', (req, res) => {
     }
     res.status(201).json({ success: true, message: 'Visitor saved successfully' });
   });
+});
+
+// Catch-all: Kirim semua request lain ke aplikasi React
+// Ini harus diletakkan setelah semua rute API
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
 app.listen(port, () => {
