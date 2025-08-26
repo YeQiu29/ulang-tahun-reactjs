@@ -90,7 +90,7 @@ const EndingSection: React.FC<EndingSectionProps> = ({ onConfettiTrigger, onShow
               <Sparkles className="absolute -bottom-4 -right-4 text-purple-400 animate-spin" size={20} />
               
               <h2 className="text-5xl md:text-7xl font-dancing text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 animate-gradient">
-                We Love You! ❤️
+                Happy Birthday To You! ❤️
               </h2>
             </div>
             
@@ -100,9 +100,9 @@ const EndingSection: React.FC<EndingSectionProps> = ({ onConfettiTrigger, onShow
             
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-200 max-w-2xl mx-auto">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Terima kasih telah menjadi bagian terpenting dalam hidup kami. 
-                Semoga hari-hari mendatang dipenuhi dengan kebahagiaan, 
-                kesuksesan, dan cinta yang tak terbatas. 
+                Terima kasih udah lihat Website sederhana ini sampai selesai. 
+                Aku cuma bisa berdoa, Semoga hari-hari mendatang dipenuhi dengan kebahagiaan, 
+                kesuksesan, dan cinta yang tak terbatas. Ada Ucapan juga nih, dari Pak Prabowo. Semoga terhibur, hehehe...
                 <br/><br/>
                 <span className="font-dancing text-2xl text-pink-600">
                   {`Happy Birthday, ${name}! 🎂✨`}

@@ -15,8 +15,8 @@ import { ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 //
 import suzanImage1 from '../assets/suzan1.jpg';
 import suzanImage2 from '../assets/suzan2.jpg';
-// import suzanImage3 from './assets/suzan3.jpg'; // Contoh jika ada foto lain
-// import suzanImage4 from './assets/suzan4.jpg'; // Contoh jika ada foto lain
+import suzanImage3 from '../assets/suzan3.jpg'; // Contoh jika ada foto lain
+import suzanImage4 from '../assets/suzan4.jpg';
 // import suzanImage5 from './assets/suzan5.jpg'; // Contoh jika ada foto lain
 
 
@@ -30,10 +30,8 @@ const GallerySection: React.FC = () => {
     // Menggunakan variabel yang sudah di-import, bukan string URL
     suzanImage1,
     suzanImage2,
-    // Hapus string di bawah dan ganti dengan `suzanImage3`
-    'https://placehold.co/800x450/c2f8a5/ffffff?text=Foto+Anda+3',
-    // Hapus string di bawah dan ganti dengan `suzanImage4`
-    'https://placehold.co/800x450/f8e4a5/ffffff?text=Foto+Anda+4',
+    suzanImage3,
+    suzanImage4
   ];
 
   useEffect(() => {
@@ -63,7 +61,7 @@ const GallerySection: React.FC = () => {
           <div className="flex justify-center items-center mb-4">
             <Camera className="text-pink-500 mr-3" size={32} />
             <h2 className="text-4xl md:text-5xl font-dancing text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-peach-600">
-              Kenangan Terindah
+              Foto Was Terindah
             </h2>
           </div>
           <p className="text-lg text-gray-600">Momen-momen berharga yang telah kita lalui bersama</p>

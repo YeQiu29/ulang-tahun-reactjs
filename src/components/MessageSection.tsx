@@ -23,10 +23,10 @@ const MessageSection: React.FC = () => {
   }, []);
 
   const messages = [
-    "Di hari istimewa ini, aku ingin memberitahumu betapa berartinya kamu dalam hidupku. Setiap detik bersamamu adalah anugerah yang tak ternilai.",
-    "Kamu adalah cahaya yang menerangi hari-hari gelapku, senyuman yang menghangatkan hatiku, dan cinta yang membuat hidup ini begitu bermakna.",
-    "Selamat ulang tahun, sayang. Semoga tahun ini membawa lebih banyak kebahagiaan, kesuksesan, dan momen-momen indah yang akan kita kenang selamanya.",
-    "Aku berdoa agar semua impianmu terwujud, agar kesehatan selalu menyertaimu, dan agar cinta kita terus tumbuh lebih kuat setiap harinya."
+    "Gafeliciteerd Met Je Verjaardag, Suzan Mega Virginia Tjahjono. Sorry, Web-nya agak berantakan. Karena banyak kerjaan jadi cuma buat website ucapan kecil-kecilan.",
+    "Semoga di tahun ini, semua impianmu bisa tercapai.Selalu ada hal baik yang datang setiap harinya. ",
+    "Tetap semangat kerjanya, walaupun banyak kerjaan, & menghadapi orang-orang yang ruweeettt....",
+    "Sekali lagi, Gafeliciteerd Met Je Verjaardag, Ya! Semoga harimu penuh Tawa dan Kebahagiaan."
   ];
 
   return (
@@ -42,7 +42,7 @@ const MessageSection: React.FC = () => {
         </div>
 
         <h2 className={`text-4xl md:text-5xl font-dancing text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          Pesan Dari Hati
+          Pesan Dari YeQiu
         </h2>
 
         <div className="space-y-8">

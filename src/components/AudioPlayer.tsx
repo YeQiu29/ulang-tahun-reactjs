@@ -11,7 +11,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 // 3. IMPORT FILE AUDIO: Di bawah ini, hapus komentar (`//`) pada baris `import`
 //    dan pastikan path-nya benar.
 //
-import mySong from '../music/trisuaka.mp3'; // Ganti nama file-nya
+import mySong from '../music/jamrud.mp3.mp3'; // Ganti nama file-nya
 
 export interface AudioPlayerControls {
   play: () => void;
