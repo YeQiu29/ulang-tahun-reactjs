@@ -23,10 +23,10 @@ const MessageSection: React.FC = () => {
   }, []);
 
   const messages = [
-    "Gafeliciteerd Met Je Verjaardag, Suzan Mega Virginia Tjahjono. Sorry, Web-nya agak berantakan. Karena banyak kerjaan jadi cuma buat website ucapan kecil-kecilan.",
-    "Semoga di tahun ini, semua impianmu bisa tercapai.Selalu ada hal baik yang datang setiap harinya. ",
-    "Tetap semangat kerjanya, walaupun banyak kerjaan, & menghadapi orang-orang yang ruweeettt....",
-    "Sekali lagi, Gafeliciteerd Met Je Verjaardag, Ya! Semoga harimu penuh Tawa dan Kebahagiaan."
+    "Sorry",
+    "Badut",
+    "badut",
+    "Badut"
   ];
 
   return (
@@ -42,7 +42,7 @@ const MessageSection: React.FC = () => {
         </div>
 
         <h2 className={`text-4xl md:text-5xl font-dancing text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          Pesan Dari YeQiu
+          Pesan Dari Badut
         </h2>
 
         <div className="space-y-8">

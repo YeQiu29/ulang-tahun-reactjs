@@ -100,9 +100,7 @@ const EndingSection: React.FC<EndingSectionProps> = ({ onConfettiTrigger, onShow
             
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-pink-200 max-w-2xl mx-auto">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Terima kasih udah lihat Website sederhana ini sampai selesai. 
-                Aku cuma bisa berdoa, Semoga hari-hari mendatang dipenuhi dengan kebahagiaan, 
-                kesuksesan, dan cinta yang tak terbatas. Ada Ucapan juga nih, dari Pak Prabowo. Semoga terhibur, hehehe...
+                Saya adalah Badut
                 <br/><br/>
                 <span className="font-dancing text-2xl text-pink-600">
                   {`Happy Birthday, ${name}! 🎂✨`}
